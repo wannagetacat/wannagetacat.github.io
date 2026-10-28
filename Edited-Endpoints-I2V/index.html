@@ -119,7 +119,11 @@
          alt="An edited endpoint changes the bus to purple while preserving the source scene. Full conditioning constrains the whole terminal frame; Partial constrains only the edit-relevant support.">
     <figcaption><b>Edited endpoints preserve context that need not specify the video's future.</b>
       Full-frame endpoint conditioning constrains both requested appearance and preserved context. Partial constrains only
-      estimated edit-relevant support M<sub>0</sub> from image-editor attention (blue outline); washed-out positions retain the video prediction.</figcaption>
+      estimated edit-relevant support M<sub>0</sub> from image-editor attention (blue outline); washed-out positions retain the video prediction.
+      Source frame: DAVIS <i>bus</i> (<a href="https://openaccess.thecvf.com/content_cvpr_2016/html/Perazzi_A_Benchmark_Dataset_CVPR_2016_paper.html">Perazzi et al., CVPR 2016</a>)
+      via <a href="https://huggingface.co/datasets/LIMinghan/FiVE-Fine-Grained-Video-Editing-Benchmark">FiVE-Bench</a>
+      (<a href="https://openaccess.thecvf.com/content/ICCV2025/html/Li_FiVE-Bench_A_Fine-grained_Video_Editing_Benchmark_for_Evaluating_Emerging_Diffusion_ICCV_2025_paper.html">Li et al., ICCV 2025</a>),
+      licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>; resized and edited.</figcaption>
   </figure>
 
   <section>
@@ -204,7 +208,8 @@
       <img src="static/images/fixed_support_failure.webp" width="1815" height="845" loading="lazy"
            alt="A preserved bus-stop sign disappears and then reappears near the end of a Partial video.">
       <figcaption><b>Estimated edit-relevant support does not guarantee a future-valid terminal constraint.</b> An
-        endpoint-preserved sign is absent at frames 108 and 112 under Partial, then reappears at frame 114.</figcaption>
+        endpoint-preserved sign is absent at frames 108 and 112 under Partial, then reappears at frame 114. Source frame
+        credited in the first figure.</figcaption>
     </figure>
   </section>
 
