@@ -22,7 +22,7 @@
     --code-bg: #f4f6f7;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     background: #ffffff;
@@ -31,15 +31,28 @@
     font-size: 17px;
     line-height: 1.65;
   }
+  .topnav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(255, 255, 255, 0.92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topnav .inner {
+    max-width: 980px; margin: 0 auto; padding: 9px 16px;
+    display: flex; align-items: center; gap: 20px; overflow-x: auto; white-space: nowrap; font-size: 0.9rem;
+  }
+  .topnav .brand { font-weight: 700; color: var(--text); text-decoration: none; margin-right: auto; }
+  .topnav a { color: var(--muted); text-decoration: none; }
+  .topnav a:hover { color: var(--accent); }
   main { max-width: 980px; margin: 0 auto; padding: 0 16px 64px; }
-  header { text-align: center; padding: 56px 0 28px; }
+  header { text-align: center; padding: 52px 0 28px; }
   h1 {
     font-size: clamp(1.7rem, 4.2vw, 2.6rem);
     line-height: 1.2;
-    margin: 0 auto 22px;
+    margin: 0 auto 14px;
     max-width: 820px;
     letter-spacing: -0.01em;
   }
+  .tagline { color: var(--muted); font-size: 1.08rem; font-style: italic; margin: 0 auto 20px; max-width: 760px; }
   .authors { font-size: 1.12rem; margin: 0 0 6px; }
   .authors span { white-space: nowrap; margin: 0 0.45em; }
   .affil { color: var(--muted); margin: 0 0 4px; }
@@ -56,7 +69,7 @@
   .btn.soon { background: #ffffff; color: var(--muted); border: 1px solid var(--line); cursor: default; }
   .release-note { color: var(--muted); font-size: 0.92rem; margin: 14px 0 0; }
   .btn svg { width: 17px; height: 17px; fill: currentColor; }
-  section { margin-top: 44px; }
+  section { margin-top: 48px; scroll-margin-top: 64px; }
   h2 {
     font-size: 1.45rem; margin: 0 0 14px; color: var(--accent);
     padding-bottom: 6px; border-bottom: 2px solid var(--accent-soft);
@@ -66,36 +79,72 @@
   figure img { display: block; width: 100%; height: auto; border-radius: 6px; }
   figcaption { font-size: 0.93rem; color: var(--muted); margin-top: 10px; line-height: 1.55; }
   figcaption b { color: var(--text); }
+  .insight {
+    background: var(--accent-soft); border-left: 4px solid var(--accent);
+    border-radius: 0 10px 10px 0; padding: 16px 20px; margin: 32px 0 0;
+  }
+  .insight .label {
+    display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 6px;
+  }
+  .insight p { margin: 0; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 14px; }
+  .stat { border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+  .stat .value { font-size: 1.65rem; font-weight: 800; color: var(--accent); line-height: 1.15; letter-spacing: -0.01em; }
+  .stat .desc { font-size: 0.86rem; color: var(--muted); line-height: 1.45; margin-top: 6px; }
   .abstract { text-align: justify; hyphens: auto; }
   .findings { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .finding { background: var(--panel); border-radius: 10px; padding: 16px 18px; }
-  .finding h3 { font-size: 1rem; margin: 0 0 8px; color: var(--accent); line-height: 1.35; }
+  .finding { background: var(--panel); border-radius: 12px; padding: 16px 18px; }
+  .finding .num { display: block; font-size: 0.8rem; font-weight: 800; letter-spacing: 0.08em; color: var(--accent); margin-bottom: 4px; }
+  .finding h3 { font-size: 1rem; margin: 0 0 8px; color: var(--text); line-height: 1.35; }
   .finding p { font-size: 0.93rem; margin: 0; line-height: 1.55; }
-  .tldr {
-    background: var(--accent-soft); border-left: 4px solid var(--accent);
-    padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 0 0 6px;
-  }
+  .bibtex { position: relative; }
   pre {
     background: var(--code-bg); border-radius: 8px; padding: 16px; overflow-x: auto;
     font-size: 0.86rem; line-height: 1.5; margin: 0;
   }
+  .copy-btn {
+    position: absolute; top: 10px; right: 10px;
+    font: inherit; font-size: 0.8rem; padding: 4px 10px; border-radius: 6px;
+    border: 1px solid var(--line); background: #fff; color: var(--muted); cursor: pointer;
+  }
+  .copy-btn:hover { color: var(--accent); border-color: var(--accent); }
   footer { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line);
            display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
            color: var(--muted); font-size: 0.9rem; }
   footer img { height: 40px; width: auto; }
   a { color: var(--accent); }
+  @media (max-width: 860px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 760px) {
     body { font-size: 16px; }
-    header { padding-top: 36px; }
+    header { padding-top: 32px; }
     .findings { grid-template-columns: 1fr; }
     .abstract { text-align: left; }
+    .topnav .brand { display: none; }
+  }
+  @media (max-width: 420px) {
+    .stats { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
-<main>
+<nav class="topnav" aria-label="Sections">
+  <div class="inner">
+    <a class="brand" href="#top">Edited Endpoints as Partial Goals</a>
+    <a href="#overview">Overview</a>
+    <a href="#findings">Findings</a>
+    <a href="#example">Example</a>
+    <a href="#analysis">Analysis</a>
+    <a href="#limitation">Limitation</a>
+    <a href="#bibtex">BibTeX</a>
+  </div>
+</nav>
+<main id="top">
   <header>
     <h1>Edited Endpoints as Partial Goals for Image-to-Video Generation</h1>
+    <p class="tagline">Which parts of an edited endpoint should constrain a video's future?</p>
     <p class="authors">
       <span>Sihyun Kim<sup>1</sup></span>
       <span>Sanghyun Jo<sup>1,2,†</sup></span>
@@ -128,58 +177,100 @@
       licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a>; resized and edited.</figcaption>
   </figure>
 
+  <div id="overview" class="insight">
+    <span class="label">Key insight</span>
+    <p>An edited endpoint carries the requested change, but it also keeps the rest of the scene in the source image's layout.
+      Imposing the whole frame turns that preserved context into requirements on the video's final state, a
+      <b>spatial over-specification</b> that shows up as discontinuities, late background reversals, and motion suppression.
+      Imposing only the <b>edit-relevant support</b> keeps completion comparable to full-frame conditioning while reducing these artifacts.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="value">5 models</div>
+      <div class="desc">training-free and learned alike show significant temporal artifacts under full-frame endpoints, in model-specific forms</div>
+    </div>
+    <div class="stat">
+      <div class="value">&minus;38%</div>
+      <div class="desc">HC (&minus;37.5%) and BMR (&minus;38.8%) on HunyuanVideo-1.5 when only the preserved context is replaced, at unchanged full-frame support</div>
+    </div>
+    <div class="stat">
+      <div class="value">35&ndash;68%</div>
+      <div class="desc">lower BMR with Partial than with Full on three backbones, with TCR within 2.1 pp of Full</div>
+    </div>
+    <div class="stat">
+      <div class="value">+12.2 pp</div>
+      <div class="desc">Dynamic Degree when Frame Guidance's loss is restricted to M<sub>0</sub>, back to the Endpoint-free level with the completion gain kept</div>
+    </div>
+  </div>
+
   <section>
     <h2>Abstract</h2>
     <p class="abstract">Edited endpoint images make the target of an image-to-video transition explicit and can improve transition completion,
       but also preserve context in the source image's layout. Full-frame endpoint conditioning turns this preserved context into
-      requirements on the video's final state, potentially inducing temporal artifacts. We measure them with Hard-Cut (HC) and
-      Background Motion Reversal (BMR), for abrupt transitions and late background reversals, alongside Dynamic Degree (DD) for
-      motion reduction, and observe model-specific artifacts across five video models spanning training-free and learned endpoint
-      conditioning. We study Partial, a selective conditioning scheme that constrains only an edit-relevant region estimated from
-      image-editor attention and leaves the remaining terminal content to the video model. Across three backbones on TC-Bench-I2V,
-      Partial reduces temporal artifacts relative to full-frame conditioning, with no significant difference in Transition
-      Completion Ratio (TCR); on Wan2.2-Turbo, uniformly weakening conditioning does not reproduce these reductions. A donor-context
-      intervention, which replaces only the context outside the edit-relevant region with the final frame of a Partial video under
-      the same full-frame conditioning, lowers HC and BMR on HunyuanVideo-1.5 and lowers BMR while restoring DD on Wan2.2-Turbo,
-      with no significant difference in TCR, so constraint extent alone does not account for these artifacts. Together, these
-      findings suggest that edited endpoints should serve as partial future goals, although edit relevance does not guarantee
-      future validity.</p>
+      requirements on the video's final state, potentially inducing temporal artifacts. We measure discontinuity with Hard-Cut (HC),
+      late background reversal with Background Motion Reversal (BMR), and motion suppression with Dynamic Degree (DD). These artifacts
+      appear across five video models spanning training-free and learned endpoint conditioning, in model-specific forms. We study
+      Partial, a selective conditioning scheme that constrains only an edit-relevant region estimated from image-editor attention and
+      leaves the remaining terminal content to the video model. Across three backbones on TC-Bench-I2V, Partial reduces temporal
+      artifacts relative to full-frame conditioning, with no significant difference in Transition Completion Ratio (TCR); on
+      Wan2.2-Turbo, uniformly weakening conditioning does not reproduce these reductions. A donor-context intervention keeps
+      full-frame conditioning and replaces only the context outside the edit-relevant region with the final frame of a Partial video.
+      It lowers HC and BMR on HunyuanVideo-1.5 and lowers BMR while restoring DD on Wan2.2-Turbo, with no significant difference in
+      TCR, so constraint extent alone does not account for these artifacts. Together, these findings suggest that edited endpoints
+      should serve as partial future goals, although edit relevance does not guarantee future validity.</p>
   </section>
 
-  <section>
+  <section id="findings">
     <h2>Key findings</h2>
     <div class="findings">
       <div class="finding">
-        <h3>1. Terminal content matters beyond constraint extent</h3>
+        <span class="num">01</span>
+        <h3>Terminal content matters beyond constraint extent</h3>
         <p>With full-frame support unchanged, the donor-context intervention lowers HC and BMR on HunyuanVideo-1.5, and lowers
           BMR while restoring DD on Wan2.2-Turbo.</p>
       </div>
       <div class="finding">
-        <h3>2. Support area and placement yield distinct trade-offs</h3>
+        <span class="num">02</span>
+        <h3>Support area and placement yield distinct trade-offs</h3>
         <p>On Wan2.2-Turbo, edit-relevant placement favors completion at matched area; shrinking support lowers HC, whereas
           enlarging it raises BMR. Tested global softening does not reproduce Partial's artifact reductions.</p>
       </div>
       <div class="finding">
-        <h3>3. Selective constraints offer practical gains with residual costs</h3>
+        <span class="num">03</span>
+        <h3>Partial reduces temporal artifacts at comparable completion</h3>
         <p>Across three backbones, Partial mitigates temporal artifacts relative to full-frame endpoint conditioning at comparable
-          TCR. Edit relevance need not imply future-valid position or visibility.</p>
+          TCR. Restricting Frame Guidance to the same support likewise keeps its completion gain and removes its motion suppression.</p>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="example">
+    <h2>Full-frame endpoints pull the background back</h2>
+    <figure>
+      <img src="static/images/bus_bmr.webp" width="1924" height="507" loading="lazy"
+           alt="Frames of the purple-bus video under Full and Partial, and background motion over time: Full reverses in the second half, Partial does not.">
+      <figcaption><b>Background Motion Reversal on the purple-bus example</b> (Wan2.2-Turbo, same seed for both).
+        (a) Under Full, the whole edited endpoint, including its unchanged background, must be reached at the end, so the scene
+        returns to the first frame's layout; under Partial, only the bus is constrained and the camera keeps following it.
+        (b) Background motion outside M<sub>0</sub>, projected on its early direction and normalized: Full reverses in the second
+        half (BMR 0.95), Partial does not (BMR 0.00). BMR is the share of second-half along-axis motion that runs backward.</figcaption>
+    </figure>
+  </section>
+
+  <section id="analysis">
     <h2>Terminal content, not only constraint extent</h2>
-    <p>Comparing Full with Partial changes both the imposed terminal content and the spatial extent of the constraint. The
+    <p>Full-frame endpoint conditioning and Partial differ in both the imposed terminal content and the constraint extent. The
       donor-context intervention keeps the edited endpoint inside M<sub>0</sub>, substitutes the final frame of a paired Partial
       rollout outside it, and constrains the entire terminal frame with the same full-frame projection.</p>
     <figure>
       <img src="static/images/context_intervention.webp" width="1815" height="1513" loading="lazy"
-           alt="Donor-context construction, paired differences against Original Full, and an example where the Full hard cut disappears.">
+           alt="Donor-context construction, paired differences against Original Full, and an example where the Full discontinuity disappears.">
       <figcaption><b>Terminal content, not only constraint extent, affects temporal artifacts.</b>
         (a) The donor-context endpoint keeps the edited endpoint inside M<sub>0</sub> (blue outline) and uses the final frame of a
         paired Partial rollout outside it (orange tint). (b) Donor-context minus Original Full with paired 95% CIs over 103 prompts
         and five seeds; open markers are not significant; ticks mark Partial minus Original Full. (c) HunyuanVideo-1.5: the
-        Original Full hard cut between frames 114 and 117 is absent under Donor-context Full.</figcaption>
+        Original Full discontinuity between frames 114 and 117 is absent under Donor-context Full.</figcaption>
     </figure>
   </section>
 
@@ -199,12 +290,12 @@
     <figure>
       <img src="static/images/support_examples.webp" width="1815" height="1380" loading="lazy"
            alt="Source images, edited endpoints, and estimated support masks for three prompts.">
-      <figcaption><b>Estimated edit support.</b> Source images, edited endpoints, and GMM&ndash;Ising masks for three TC-Bench-I2V
-        prompts. Blue marks support; percentages give the constrained area.</figcaption>
+      <figcaption><b>Estimated edit-relevant support.</b> Source images, edited endpoints, and GMM&ndash;Ising masks for three
+        TC-Bench-I2V prompts. Blue marks support; percentages give the constrained area.</figcaption>
     </figure>
   </section>
 
-  <section>
+  <section id="limitation">
     <h2>Limitation: edit relevance is not future validity</h2>
     <figure>
       <img src="static/images/fixed_support_failure.webp" width="1815" height="845" loading="lazy"
@@ -215,14 +306,17 @@
     </figure>
   </section>
 
-  <section>
+  <section id="bibtex">
     <h2>BibTeX</h2>
-<pre><code>@article{kim2026edited,
+    <div class="bibtex">
+      <button class="copy-btn" type="button" onclick="copyBib(this)">Copy</button>
+<pre><code id="bibtex-code">@article{kim2026edited,
   title   = {Edited Endpoints as Partial Goals for Image-to-Video Generation},
   author  = {Kim, Sihyun and Jo, Sanghyun and Kim, Kyungsu},
   journal = {arXiv preprint},
   year    = {2026}
 }</code></pre>
+    </div>
   </section>
 
   <footer>
@@ -230,5 +324,12 @@
     <a href="https://aibl.snu.ac.kr" aria-label="AIBL, Seoul National University"><img src="static/images/aibl_logo.png" alt="AIBL logo" width="820" height="720"></a>
   </footer>
 </main>
+<script>
+  function copyBib(btn) {
+    const text = document.getElementById("bibtex-code").innerText;
+    const done = () => { btn.textContent = "Copied"; setTimeout(() => { btn.textContent = "Copy"; }, 1500); };
+    if (navigator.clipboard) { navigator.clipboard.writeText(text).then(done, done); } else { done(); }
+  }
+</script>
 </body>
 </html>
